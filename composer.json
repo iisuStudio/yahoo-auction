@@ -1,13 +1,13 @@
 {
-    "name": "notfoundsam/yahoo-auction",
+    "name": "iisustudio/yahoo-auction",
     "type": "library",
     "description": "Yahoo auction bidder",
     "keywords": ["yahoo", "auction"],
-    "homepage": "https://github.com/notfoundsam/yahoo-auction",
+    "homepage": "https://github.com/iisustudio/yahoo-auction",
     "authors": [
         {
-            "name": "Alexey Zazimko",
-            "homepage": "https://github.com/notfoundsam"
+            "name": "iisu",
+            "homepage": "https://github.com/iisustudio"
         }
     ],
     "version": "1.0.2",
@@ -15,11 +15,11 @@
     "require": {
         "php": ">=5.4.0",
         "sunra/php-simple-html-dom-parser": "~1.5.0",
-        "rmccue/requests": ">=1.0"
+        "rmccue/requests": "^1.7.0"
     },
     "autoload": {
         "psr-4": {
-            "Yahooauc\\": "src/"
+            "YahooAuctionBidder\\": "src/"
         }
     }
 }

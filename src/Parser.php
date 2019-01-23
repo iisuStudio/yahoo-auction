@@ -1,8 +1,8 @@
 <?php
 
-namespace Yahooauc;
+namespace YahooAuctionBidder;
 
-use Yahooauc\Exceptions\ParserException;
+use YahooAuctionBidder\Exceptions\ParserException;
 use Sunra\PhpSimple\HtmlDomParser;
 
 /**
@@ -20,6 +20,8 @@ class Parser
     private static $EN          = array("", "", "min", "hour", "day");
     private static $BID_SUCCESS = '入札を受け付けました。あなたが現在の最高額入札者です。';
     private static $PRICE_UP    = '/再入札/';
+    private static $RE_LOGIN    = '/再認証/';
+    private static $SYSTEM_ERROR= '/システムエラー/';
     private static $AUCTION_WON = 'おめでとうございます!!　あなたが落札しました。';
     private static $TABLE_WON   = 8;
     private static $TABLE_BID   = 8;
@@ -286,5 +288,51 @@ class Parser
         }
 
         return null;
+    }
+
+    /**
+     * Check correct ReLogin
+     *
+     * @param  string $body     HTML of login page
+     * @param  string $userName Login user name
+     * @return bool             Return true if login is correct or false is fail
+     *
+     */
+    public static function checkReLogin(&$body)
+    {
+        $html = static::getHtmlDom($body);
+
+        if ($p_result = $html->find('title', 0))
+        {
+            if (preg_match(static::$RE_LOGIN, trim($p_result->innertext)))
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * Check correct
+     *
+     * @param  string $body     HTML of login page
+     * @param  string $userName Login user name
+     * @return bool             Return true if login is correct or false is fail
+     *
+     */
+    public static function checkError(&$body)
+    {
+        $html = static::getHtmlDom($body);
+
+        if ($p_result = $html->find('div[id=modAlertBox]', 0))
+        {
+            if (preg_match(static::$SYSTEM_ERROR, trim($p_result->find('strong', 0)->innertext)))
+            {
+                throw new ParserException('System Error on Page');
+            }
+        }
+
+        return false;
     }
 }

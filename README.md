@@ -11,7 +11,7 @@ For how to use see examples folder
 php >= 5.4
 ```
 
-Be sure you have instaled the next packeges
+Be sure you have installed the next packages
 ```
 php-curl
 php-mbstring

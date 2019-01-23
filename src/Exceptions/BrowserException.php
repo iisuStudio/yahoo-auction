@@ -1,5 +1,5 @@
 <?php
 
-namespace Yahooauc\Exceptions;
+namespace YahooAuctionBidder\Exceptions;
 
 class BrowserException extends \Exception {}

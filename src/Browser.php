@@ -1,10 +1,11 @@
 <?php
 
-namespace Yahooauc;
+namespace YahooAuctionBidder;
 
-use Yahooauc\Parser;
-use Yahooauc\Exceptions\BrowserException;
-use Yahooauc\Exceptions\BrowserLoginException;
+use SimpleXMLElement;
+use YahooAuctionBidder\Parser;
+use YahooAuctionBidder\Exceptions\BrowserException;
+use YahooAuctionBidder\Exceptions\BrowserLoginException;
 use Requests_Session;
 use Requests;
 
@@ -26,6 +27,10 @@ class Browser
     private $appId               = null;
 
     private $session             = null;
+
+    /**
+     * @var SimpleXMLElement
+     */
     private $auctionInfo         = null;
 
     private static $AUCTION_URL  = 'http://auctions.yahoo.co.jp/';
@@ -47,6 +52,7 @@ class Browser
      * @param  string $userPass  Your Yahoo account password
      * @param  string $appId     Your Yahoo application ID
      * @param  string $cookieJar Stored cookieJar object
+     * @param  array  $requestOptons
      * @return object            Return setted Browser object
      *
      */
@@ -305,6 +311,14 @@ class Browser
     private function getBody($url, $options = null, $method = Requests::GET)
     {
         $response = $this->session->request($url, [], $options, $method, $this->requestOptons);
+
+        if(Parser::checkReLogin($response->body)) {
+            //retry login
+            $this->login();
+            $response = $this->session->request($url, [], $options, $method, $this->requestOptons);
+        }
+
+        Parser::checkError($response->body);
 
         return $response->body;
     }

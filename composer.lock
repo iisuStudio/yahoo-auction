@@ -1,11 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "hash": "e9206c62b99b94aec5987c3b743704e2",
-    "content-hash": "1dc368cb709b2591ea8ac9df817d803d",
+    "content-hash": "de4365aa227b857bf25f4b4d775c81eb",
     "packages": [
         {
             "name": "rmccue/requests",
@@ -54,23 +53,24 @@
                 "iri",
                 "sockets"
             ],
-            "time": "2016-10-13 00:11:37"
+            "time": "2016-10-13T00:11:37+00:00"
         },
         {
             "name": "sunra/php-simple-html-dom-parser",
-            "version": "v1.5.1",
+            "version": "v1.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sunra/php-simple-html-dom-parser.git",
-                "reference": "f910346ce47513a49ed5b8de197cde26c3f0b193"
+                "reference": "75b9b1cb64502d8f8c04dc11b5906b969af247c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sunra/php-simple-html-dom-parser/zipball/f910346ce47513a49ed5b8de197cde26c3f0b193",
-                "reference": "f910346ce47513a49ed5b8de197cde26c3f0b193",
+                "url": "https://api.github.com/repos/sunra/php-simple-html-dom-parser/zipball/75b9b1cb64502d8f8c04dc11b5906b969af247c6",
+                "reference": "75b9b1cb64502d8f8c04dc11b5906b969af247c6",
                 "shasum": ""
             },
             "require": {
+                "ext-mbstring": "*",
                 "php": ">=5.3.2"
             },
             "type": "library",
@@ -88,6 +88,10 @@
                     "name": "Sunra",
                     "email": "sunra@yandex.ru",
                     "homepage": "https://github.com/sunra"
+                },
+                {
+                    "name": "S.C. Chen",
+                    "homepage": "http://sourceforge.net/projects/simplehtmldom/"
                 }
             ],
             "description": "Composer adaptation of: A HTML DOM parser written in PHP5+ let you manipulate HTML in a very easy way! Require PHP 5+. Supports invalid HTML. Find tags on an HTML page with selectors just like jQuery. Extract contents from HTML in a single line.",
@@ -97,7 +101,7 @@
                 "html",
                 "parser"
             ],
-            "time": "2016-05-20 11:21:15"
+            "time": "2016-11-22T22:57:47+00:00"
         }
     ],
     "packages-dev": [],
